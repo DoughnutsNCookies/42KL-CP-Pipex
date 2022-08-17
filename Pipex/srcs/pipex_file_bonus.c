@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_file_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: schuah <schuah@student.42.fr>              +#+  +:+       +#+        */
+/*   By: schuah <schuah@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 15:56:42 by schuah            #+#    #+#             */
-/*   Updated: 2022/07/23 14:19:40 by schuah           ###   ########.fr       */
+/*   Updated: 2022/08/17 12:49:08 by schuah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ void	write_heredoc(int ac, char **av, int fd)
 			write(1, "pipe ", 5);
 		write(1, "heredoc>", 8);
 		input = get_next_line(STDIN_FILENO);
-		if (ft_strncmp(av[0], input, ft_strlen(av[0])) == 0)
+		if (ft_strncmp(av[0], input, ft_strlen(av[0])) == 0
+			&& (int)ft_strlen(av[0]) == (int)ft_strlen(input) - 1)
 			break ;
 		write(fd, input, ft_strlen(input));
 		free(input);
