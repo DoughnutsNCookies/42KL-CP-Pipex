@@ -6,7 +6,7 @@
 #    By: schuah <schuah@student.42kl.edu.my>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/16 18:04:15 by schuah            #+#    #+#              #
-#    Updated: 2022/08/16 18:07:55 by schuah           ###   ########.fr        #
+#    Updated: 2022/08/23 21:28:48 by schuah           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,6 @@ SRC_FILES		=	ft_isalpha \
 					get_next_line_utils
 SRCS 			= 	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJS 			= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRC_FILES)))
-
 
 all:
 					mkdir -p $(OBJS_DIR)
