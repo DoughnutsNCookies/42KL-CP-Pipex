@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_produce_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: schuah <schuah@student.42.fr>              +#+  +:+       +#+        */
+/*   By: schuah <schuah@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 11:41:26 by schuah            #+#    #+#             */
-/*   Updated: 2022/07/20 12:28:27 by schuah           ###   ########.fr       */
+/*   Updated: 2022/09/09 15:23:00 by schuah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,18 @@ void	dup_redirecting(t_pinfo *pinfo)
 char	*comb_cmd(char **lastcmd, char *newcmd, t_pinfo *pinfo)
 {
 	char	*cmd;
+	char	*temp;
 
 	if (access(newcmd, F_OK) == 0)
 		return (newcmd);
 	while (*lastcmd != NULL)
 	{
-		cmd = ft_strjoin(ft_strjoin(*lastcmd, "/"), newcmd);
+		temp = ft_strjoin(*lastcmd, "/");
+		cmd = ft_strjoin(temp, newcmd);
 		if (access(cmd, F_OK) == 0)
 			return (cmd);
 		free(cmd);
+		free(temp);
 		lastcmd++;
 	}
 	write(2, "Command not found: ", 19);
