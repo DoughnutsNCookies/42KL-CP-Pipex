@@ -46,7 +46,10 @@ char	*comb_cmd(char **lastcmd, char *newcmd, t_pinfo *pinfo)
 		temp = ft_strjoin(*lastcmd, "/");
 		cmd = ft_strjoin(temp, newcmd);
 		if (access(cmd, F_OK) == 0)
+		{
+			free(temp);
 			return (cmd);
+		}
 		free(cmd);
 		free(temp);
 		lastcmd++;
