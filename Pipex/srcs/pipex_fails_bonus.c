@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_fails_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: schuah <schuah@student.42.fr>              +#+  +:+       +#+        */
+/*   By: schuah <schuah@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 14:10:57 by schuah            #+#    #+#             */
-/*   Updated: 2022/07/20 11:33:52 by schuah           ###   ########.fr       */
+/*   Updated: 2022/09/29 20:48:59 by schuah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	print_error(char *str)
 void	pipe_fail(t_pinfo *pinfo)
 {
 	if (pinfo->hd == 1)
-		unlink("hd_temp");
+		unlink(".hd_temp");
 	close(pinfo->fd_in);
 	close(pinfo->fd_out);
 	free(pinfo->pipe);
@@ -37,7 +37,7 @@ void	free_parent(t_pinfo *pinfo)
 	int	i;
 
 	if (pinfo->hd == 1)
-		unlink("hd_temp");
+		unlink(".hd_temp");
 	close(pinfo->fd_in);
 	close(pinfo->fd_out);
 	free(pinfo->pipe);

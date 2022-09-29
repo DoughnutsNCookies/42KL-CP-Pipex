@@ -6,7 +6,7 @@
 /*   By: schuah <schuah@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 15:56:42 by schuah            #+#    #+#             */
-/*   Updated: 2022/08/17 12:49:08 by schuah           ###   ########.fr       */
+/*   Updated: 2022/09/29 20:48:48 by schuah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	setfd_in(int ac, char **av, t_pinfo *pinfo)
 		if (pinfo->fd_in == -1)
 		{
 			perror("Infile Error");
+			setfd_out(ac, av, pinfo);
 			exit(1);
 		}
 	}
@@ -47,7 +48,15 @@ void	setfd_in(int ac, char **av, t_pinfo *pinfo)
 void	setfd_out(int ac, char **av, t_pinfo *pinfo)
 {
 	if (pinfo->hd == 1)
+	{
 		pinfo->fd_out = open(av[ac - 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
+		if (pinfo->fd_out == -1)
+		{
+			unlink(".hd_temp");
+			perror("Outfile Error");
+			exit(1);
+		}
+	}
 	else
 	{
 		pinfo->fd_out = open(av[ac - 1], O_CREAT | O_RDWR | O_TRUNC, 0644);
@@ -85,7 +94,7 @@ void	here_doc(int ac, char **av, t_pinfo *pinfo)
 {
 	int		fd;
 
-	fd = open("hd_temp", O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	fd = open(".hd_temp", O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd == -1)
 	{
 		perror("Here_doc Error");
@@ -93,10 +102,10 @@ void	here_doc(int ac, char **av, t_pinfo *pinfo)
 	}
 	write_heredoc(ac, av, fd);
 	close(fd);
-	pinfo->fd_in = open("hd_temp", O_RDONLY);
+	pinfo->fd_in = open(".hd_temp", O_RDONLY);
 	if (pinfo->fd_in == -1)
 	{
-		unlink("hd_temp");
+		unlink(".hd_temp");
 		perror("Here_doc Error");
 		exit(1);
 	}
