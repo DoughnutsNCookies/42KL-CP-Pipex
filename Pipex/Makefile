@@ -31,7 +31,7 @@ all:
 				make $(NAME)
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
-				$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
+				$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME):		$(OBJS)
 				$(CC) $(CFLAGS) $(LIBFT_DIR)/$(LIBFT) $(OBJS) -o $(NAME)
